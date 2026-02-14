@@ -9,7 +9,7 @@ Réaliser un laboratoire de sécurité Android afin de comprendre :
 - AVD (API 23)
 - ADB
 ## Étape 1 : Rooter l’AVD
-![Étape 1 - adb root](screenshots/10.png)
+![Étape 1 - adb root](screenshots/1.png)
 L’émulateur Android (AVD) a été détecté correctement par ADB.  La commande `adb root` permet de redémarrer le service ADB avec des privilèges élevés, ce qui est autorisé uniquement sur les images d’émulateur ou de laboratoire.  La commande `adb shell id` retourne `uid=0 (root)`, confirmant que l’environnement est bien rooté.  Cela permet d’accéder à des zones normalement protégées du système afin d’observer l’impact du root sur les mécanismes de sécurité Android etla commande `fastboot oem device-info` n’est applicable que sur un appareil physique connecté en mode fastboot avec un bootloader déverrouillé.  
 ## Étape 2 : Fiche périmètre
 - Application : App de test (debug)
@@ -18,27 +18,27 @@ L’émulateur Android (AVD) a été détecté correctement par ADB.  La command
 - Données : Fictives uniquement
 - Réseau : Environnement de test isolé
 ## Étape 4 : Installons et lancons l'app de test
-![Étape 1 - adb root](screenshots/1.png)
+![Étape 1 - adb root](screenshots/2.png)
 Cette capture montre le clonage réussi du dépôt GitHub contenant l’application DIVA à l’aide de la commande `git clone`.  
 Le dépôt a été récupéré localement afin d’installer l’application de test dans un environnement contrôlé.
 
-![Étape 1 - adb root](screenshots/1.png)
+![Étape 1 - adb root](screenshots/4.png)
 Cette capture montre le projet DIVA ouvert dans Android Studio ainsi que l’émulateur Android (AVD) démarré.  
-![Étape 1 - adb root](screenshots/1.png)
+![Étape 1 - adb root](screenshots/5.png)
 
 Cette capture montre l’installation réussie de l’application DIVA sur l’AVD à l’aide de la commande `adb install`.Le message `Success` confirme que l’application a été correctement déployée dans l’environnement de test.
 ## Étape 5 : Définition de scénarios simples
 
 ### Scénario 1 – Ouverture de l’écran d’accueil de DIVA
-![Écran d’accueil](screenshots/scenario1_home_screen_diva.png)
+![Écran d’accueil](screenshots/6.png)
 Cette capture montre l’écran d’accueil de l’application DIVA après son lancement sur l’AVD.Elle confirme que l’application démarre correctement et affiche la liste des modules de test disponibles. 
 ### Scénario 2 – Accès au module « Insecure Data Storage – Part 1 »
-![Insecure Storage](screenshots/scenario2_open_insecure_data_storage.png)
+![Insecure Storage](screenshots/7.png)
 
 Cette capture montre l’accès au module « Insecure Data Storage – Part 1 » de l’application DIVA. Ce scénario valide la navigation depuis l’écran d’accueil vers une fonctionnalité spécifique de l’application.  
 Ce module servira de base pour analyser les mécanismes de stockage de données et leurs faiblesses potentielle.
 ### Scénario 3 – Interaction utilisateur et sauvegarde de données
-![Interaction](screenshots/scenario3_user_input_save.png)
+![Interaction](screenshots/8.png)
 
 Cette capture illustre une interaction utilisateur dans le module « Insecure Data Storage – Part 1 ».Un identifiant et un mot de passe fictifs sont saisis puis enregistrés via l’action « SAVE ».
 ## Étape 6 : Résumé Android Security
@@ -55,7 +55,7 @@ Si un maillon est compromis, le démarrage est signalé comme non fiable.
 ### Importance de l’intégrité au démarrage
 L’intégrité au démarrage est critique car si le processus de démarrage est compromis, toutes les protections de sécurité ultérieures peuvent être contournées, comme une forteresse dont la porte principale serait ouverte.
 ### Vérification de l’état de Verified Boot sur l’AVD
-![Interaction](screenshots/scenario3_user_input_save.png)
+![Interaction](screenshots/9.png)
 
 Cette capture montre l’exécution de la commande `adb shell getprop ro.boot.verifiedbootstate` sur un Android Virtual Device. Aucune valeur n’est retournée, ce qui est un comportement connu et attendu sur certains émulateurs Android, notamment lorsque l’AVD est rooté ou utilise une image générique.
 
