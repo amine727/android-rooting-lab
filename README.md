@@ -32,11 +32,10 @@ Cette capture montre l’installation réussie de l’application DIVA sur l’A
 ### Scénario 1 – Ouverture de l’écran d’accueil de DIVA
 ![Écran d’accueil](screenshots/6.png)
 Cette capture montre l’écran d’accueil de l’application DIVA après son lancement sur l’AVD.Elle confirme que l’application démarre correctement et affiche la liste des modules de test disponibles. 
-### Scénario 2 – Accès au module « Insecure Data Storage – Part 1 »
+### Scénario 2 – Acceptation d’une entrée utilisateur non validée
 ![Insecure Storage](screenshots/7.png)
 
-Cette capture montre l’accès au module « Insecure Data Storage – Part 1 » de l’application DIVA. Ce scénario valide la navigation depuis l’écran d’accueil vers une fonctionnalité spécifique de l’application.  
-Ce module servira de base pour analyser les mécanismes de stockage de données et leurs faiblesses potentielle.
+Une entrée utilisateur inattendue a été saisie dans le champ de nom d’utilisateur du module « Insecure Data Storage – Part 1 ». L’application accepte la valeur sans afficher de message d’erreur et confirme l’enregistrement des données.Ce comportement indique une absence de validation ou de filtrage des entrées utilisateur avant leur stockage.  
 ### Scénario 3 – Interaction utilisateur et sauvegarde de données
 ![Interaction](screenshots/8.png)
 
