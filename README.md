@@ -96,24 +96,30 @@ En laboratoire, un environnement privilégié peut aider à observer des artefac
 L’OWASP (Open Web Application Security Project) est une organisation de référence en matière de sécurité applicative.  
 Le MASVS (Mobile Application Security Verification Standard) définit un ensemble d’exigences permettant d’évaluer le niveau de sécurité des applications mobiles.
 
-### Exigence STORAGE-1
-Les données sensibles telles que les clés API, mots de passe ou jetons d’authentification doivent être stockées de manière sécurisée en utilisant des mécanismes de chiffrement appropriés.
 
-### Exigence NETWORK-1
-Les communications réseau de l’application doivent utiliser le protocole TLS avec une configuration correcte et une vérification rigoureuse des certificats afin d’éviter les attaques de type interception.
+### Exigence MASVS-AUTH-1
+Cette exigence impose que les mécanismes d’authentification soient correctement implémentés et résistants aux contournements.  
+L’application doit s’assurer que l’accès aux fonctionnalités sensibles est strictement réservé aux utilisateurs authentifiés et autorisés.
 
+### Exigence MASVS-CRYPTO-1
+Cette exigence stipule que les fonctions cryptographiques utilisées par l’application doivent reposer sur des algorithmes standards et reconnus comme sécurisés.  
 Lors des tests réalisés avec des privilèges root, il est possible de vérifier le respect de ces exigences en examinant les mécanismes de stockage locaux et le trafic réseau de l’application.
 ## Étape 14 : OWASP MASTG
 
-Le MASTG (Mobile Application Security Testing Guide) complète le MASVS en décrivant les méthodes pratiques permettant de vérifier les exigences de sécurité.  
-Alors que le MASVS définit ce qui doit être vérifié, le MASTG explique comment réaliser ces vérifications lors des tests.
+Le MASTG (Mobile Application Security Testing Guide) complète le MASVS en décrivant les méthodes pratiques permettant de vérifier les exigences de sécurité lors des tests.
 
-### Idée de test 1 : Analyse du stockage local
-Vérifier si les fichiers de préférences partagées de l’application contiennent des informations sensibles stockées en clair en examinant le répertoire `/data/data/[package_name]/shared_prefs/`.
+### Idée de test 1 : Vérification de l’authentification biométrique  
+**(MASTG-TEST-0018 : Testing Biometric Authentication – Android)**
 
-### Idée de test 2 : Analyse des journaux d’exécution
-Analyser les journaux générés par l’application à l’aide de `adb logcat` afin de détecter d’éventuelles fuites d’informations sensibles durant l’exécution.
+Une idée de test consiste à vérifier si l’authentification biométrique est correctement implémentée et ne peut pas être contournée par des mécanismes applicatifs faibles.Une mauvaise intégration de l’API biométrique pourrait permettre un accès non autorisé aux fonctionnalités protégées de l’application.
+### Idée de test 2 : Vérification des modes de chiffrement symétrique  
+**(MASTG-TEST-0232 : Broken Symmetric Encryption Modes)**
+
+Une idée de test consiste à analyser si l’application utilise des modes de chiffrement symétrique faibles ou déconseillés, tels que le mode ECB.L’utilisation de modes de chiffrement non sécurisés peut révéler des motifs dans les données chiffrées et compromettre la confidentialité des informations sensibles.
 
 
+## Conclusion
+
+Ce laboratoire a permis d’analyser les enjeux de sécurité des applications mobiles Android à travers l’étude d’une application volontairement vulnérable, ces différentes étapes ont mis en évidence l’importance de la validation des entrées, de la protection du stockage local et de la sécurité du processus de démarrage.  
 
   
